@@ -1,6 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import plotly.express as px
+import dash
+from dash import html, dcc
+
 
 """
 Descrição do Trabalho:
@@ -56,7 +60,6 @@ def visualizacao_histograma(dados):
     plt.grid(axis='y', linestyle='--', alpha=0.6)
     plt.show()
 
-visualizacao_histograma(dados)
 
 def visualizacao_faixas_etarias(dados):
     """
@@ -89,7 +92,6 @@ def visualizacao_faixas_etarias(dados):
     # Exibir gráfico
     plt.show()
 
-visualizacao_faixas_etarias(dados)
 
 def visualizacao_barras_empilhadas(dados):
     """
@@ -131,7 +133,6 @@ def visualizacao_barras_empilhadas(dados):
     # Exibir gráfico
     plt.show()
 
-visualizacao_barras_empilhadas(dados)
 
 def visualizacao_barras_empilhadas_percentual(dados):
     """
@@ -175,4 +176,34 @@ def visualizacao_barras_empilhadas_percentual(dados):
     # Exibir gráfico
     plt.show()
 
-visualizacao_barras_empilhadas_percentual(dados)
+
+
+def visualizacao_boxplot_idade_por_diabetes(dados):
+    fig, ax = plt.subplots()
+    ax.set_ylabel('Idade')
+    ax.set_title('Distribuição da idade por status de diabetes')
+
+    # Separar os dados
+    sem_diabetes = dados[dados['diabetes'] == 0]['age']
+    com_diabetes = dados[dados['diabetes'] == 1]['age']
+
+    # Plotar
+    ax.boxplot([sem_diabetes, com_diabetes], labels=['Sem diabetes', 'Com diabetes'])
+
+    plt.show()
+
+def histograma_idade(dados):
+    plt.hist(dados['age'], bins=30, color='skyblue', edgecolor='black')
+    plt.title('Distribuição da Idade')
+    plt.xlabel('Idade')
+    plt.ylabel('Frequência')
+    plt.grid(True)
+    plt.show()
+
+    
+
+#visualizacao_histograma(dados)
+#visualizacao_faixas_etarias(dados)
+#visualizacao_barras_empilhadas(dados)
+#visualizacao_barras_empilhadas_percentual(dados)
+visualizacao_boxplot_idade_por_diabetes(dados)
